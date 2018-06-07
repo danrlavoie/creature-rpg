@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
+import java.util.Random;
 import java.util.UUID;
 
 public class CreatureActor extends Actor {
@@ -11,6 +12,10 @@ public class CreatureActor extends Actor {
 
     private String id;
     private String name;
+    private String species;
+    private String family;
+
+    private int[] growthRates;
 
     private int xp;
     private int level;
@@ -49,17 +54,34 @@ public class CreatureActor extends Actor {
         return this.res;
     }
 
-    public CreatureActor() {
-        this(0, 1);
+    public CreatureActor(String species) {
+        this(0, 0, species);
     }
-    public CreatureActor(int xp, int level) {
+    public CreatureActor(int xp, int level, String species) {
         this.id = UUID.randomUUID().toString();
         this.xp = xp;
         this.level = level;
-
+        this.species = species;
+        this.family = CreatureTemplate.Species_Families.get(species);
+        this.growthRates = CreatureTemplate.Families_Growths.get(this.family).get(this.species);
+        this.atk = this.def = this.agi = this.wis = this.res = this.maxHP = this.maxSP = this.hp = this.sp = 1;
+        for (int i = 0; i <= level; i++) {
+            this.levelUp();
+        }
     }
 
     private void levelUp() {
+        this.level++;
+
+        Random rand = new Random();
+        this.maxHP += rand.nextInt(this.growthRates[0])/10;
+        this.maxSP += rand.nextInt(this.growthRates[1])/10;
+        this.nextLevelXP += rand.nextInt(this.growthRates[2]) * this.level;
+        this.atk += rand.nextInt(this.growthRates[3])/10;
+        this.def += rand.nextInt(this.growthRates[4])/10;
+        this.agi += rand.nextInt(this.growthRates[5])/10;
+        this.wis += rand.nextInt(this.growthRates[6])/10;
+        this.res += rand.nextInt(this.growthRates[7])/10;
 
     }
 
@@ -68,6 +90,24 @@ public class CreatureActor extends Actor {
         if (this.xp >= nextLevelXP) {
             levelUp();
         }
+    }
+
+    public String statsText() {
+        String s = "";
+        s += this.name;
+        s += "\t" + this.id;
+        s += "\n" + this.family + "\t" + this.species;
+        s += "\nLevel:\t" + this.level;
+        s += "\nExp:\t" + this.xp;
+        s += "\nHP:\t\t" + this.hp + "/" + this.maxHP;
+        s += "\nSP:\t\t" + this.sp + "/" + this.maxSP;
+        s += "\nATK:\t" + this.atk;
+        s += "\nDEF:\t" + this.def;
+        s += "\nAGI:\t" + this.agi;
+        s += "\nWIS:\t" + this.wis;
+        s += "\nRES:\t" + this.res;
+
+        return s;
     }
 
     public void combatAction() {

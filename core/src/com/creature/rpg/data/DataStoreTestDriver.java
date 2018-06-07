@@ -10,8 +10,8 @@ public class DataStoreTestDriver {
         ds.setIn(new String[]{"src","com","creature","rpg"}, 666);
         ds.setIn(new String[]{"src","com","bob","foo"}, "bar");
         System.out.println(ds);
-        System.out.println(ds.getIn(new String[]{"src", "com", "creature", "rpg"}));
-        System.out.println(ds.get("src"));
+        System.out.println(ds.getIn(new String[]{"src", "com", "creature", "rpg"}).getValue());
+        System.out.println(ds.get("src").getValue());
         ds.deleteIn(new String[]{"src","com"});
         ds.delete("stuff");
         System.out.println(ds);

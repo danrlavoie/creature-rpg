@@ -6,6 +6,11 @@ import java.util.HashMap;
 
 public class DataNode {
     private String key;
+
+    public Object getValue() {
+        return value;
+    }
+
     private Object value;
     private HashMap<String, Object> values;
     private HashMap<String, DataNode> nodeValues;
@@ -21,20 +26,20 @@ public class DataNode {
         this.nodeValues = new HashMap<String, DataNode>();
     }
 
-    public Object get(String key) {
+    public DataNode get(String key) {
         if (this.nodeValues.get(key) != null) {
-            return this.nodeValues.get(key).value;
+            return this.nodeValues.get(key);
         }
         return null;
     }
 
-    public Object getIn(String[] path) {
+    public DataNode getIn(String[] path) {
         String key = path[0];
         if (this.nodeValues.get(key) != null) {
             if (path.length > 1) {
                 return this.nodeValues.get(key).getIn(Arrays.copyOfRange(path, 1, path.length));
             } else {
-                return this.nodeValues.get(key).value;
+                return this.nodeValues.get(key);
             }
         }
         else {

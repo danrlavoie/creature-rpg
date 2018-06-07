@@ -23,11 +23,11 @@ public class DataStore {
         System.out.println(root);
     }
 
-    public Object getIn(String[] path) {
+    public DataNode getIn(String[] path) {
         return root.getIn(path);
     }
 
-    public Object get(String key) {
+    public DataNode get(String key) {
         return root.get(key);
     }
 
