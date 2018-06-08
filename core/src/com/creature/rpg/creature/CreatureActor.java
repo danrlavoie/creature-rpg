@@ -3,11 +3,14 @@ package com.creature.rpg.creature;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.creature.rpg.data.DataStore;
 
 import java.util.Random;
 import java.util.UUID;
 
 public class CreatureActor extends Actor {
+    private static DataStore ds = DataStore.getStore();
+
     private Texture texture;
 
     private String id;
@@ -53,21 +56,26 @@ public class CreatureActor extends Actor {
     public int getRES() {
         return this.res;
     }
+    public String getID() {
+        return id;
+    }
 
     public CreatureActor(String species) {
-        this(0, 0, species);
+        this(species, 1);
     }
-    public CreatureActor(int xp, int level, String species) {
+    public CreatureActor(String species, int level) {
         this.id = UUID.randomUUID().toString();
-        this.xp = xp;
-        this.level = level;
+        this.xp = 0;
+        this.level = 0;
         this.species = species;
         this.family = CreatureTemplate.Species_Families.get(species);
         this.growthRates = CreatureTemplate.Families_Growths.get(this.family).get(this.species);
-        this.atk = this.def = this.agi = this.wis = this.res = this.maxHP = this.maxSP = this.hp = this.sp = 1;
-        for (int i = 0; i <= level; i++) {
+        this.atk = this.def = this.agi = this.wis = this.res = this.maxHP = this.maxSP = 1;
+        for (int i = 0; i < level; i++) {
             this.levelUp();
         }
+        this.hp = this.maxHP;
+        this.sp = this.maxSP;
     }
 
     private void levelUp() {
@@ -90,6 +98,10 @@ public class CreatureActor extends Actor {
         if (this.xp >= nextLevelXP) {
             levelUp();
         }
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String statsText() {

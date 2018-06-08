@@ -1,12 +1,13 @@
 package com.creature.rpg;
 
 import com.creature.rpg.creature.CreatureActor;
+import com.creature.rpg.data.DataStore;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 
 public class CombatController {
-    private ArrayList playerCombatants, enemyCombatants;
+    private DataStore ds = DataStore.getStore();
     private CreatureActor[] orderedCombatants;
 
     private Comparator<CreatureActor> agiComparator = new Comparator<CreatureActor>() {
