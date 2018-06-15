@@ -122,8 +122,13 @@ public class CreatureActor extends Actor {
         return s;
     }
 
-    public void combatAction() {
+    public String toString() {
+        return this.statsText();
+    }
 
+    public void combatAction() {
+        System.out.println(this.level + " " + this.species + " is Acting!");
+        ds.setIn(new String[]{"Combat",this.id,"action"}, this.level);
     }
 
     @Override

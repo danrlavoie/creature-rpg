@@ -16,7 +16,7 @@ public class CreatureFactory {
     public static CreatureActor getCreature(String species, int ownership, int level) {
         CreatureActor c = new CreatureActor(species, level);
         if (ownership == 0) { ds.setIn(new String[]{"Creatures","EnemyParty",c.getID()}, c); }
-        else if (ownership == 1) { ds.setIn(new String[]{"Creatures","PlayerParty,c.getID()"}, c); }
+        else if (ownership == 1) { ds.setIn(new String[]{"Creatures","PlayerParty",c.getID()}, c); }
         else { ds.setIn(new String[]{"Creatures","PlayerStorage",c.getID()}, c); }
         return c;
     }

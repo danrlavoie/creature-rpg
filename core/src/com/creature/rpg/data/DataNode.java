@@ -1,6 +1,5 @@
 package com.creature.rpg.data;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -12,8 +11,12 @@ public class DataNode {
     }
 
     private Object value;
-    private HashMap<String, Object> values;
+
     private HashMap<String, DataNode> nodeValues;
+
+    public HashMap<String, DataNode> getNodeValues() {
+        return nodeValues;
+    }
 
     public DataNode setValue(String key, Object value) {
         this.nodeValues.put(key, new DataNode(key, value));

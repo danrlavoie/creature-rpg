@@ -10,6 +10,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.creature.rpg.combat.CombatController;
+import com.creature.rpg.creature.CreatureActor;
+import com.creature.rpg.creature.CreatureFactory;
 import com.creature.rpg.data.DataStore;
 
 public class CreatureRPG extends ApplicationAdapter {
@@ -19,6 +22,7 @@ public class CreatureRPG extends ApplicationAdapter {
 	private Sprite fightButton;
 	private Stage stage;
 	private DataStore ds = DataStore.getStore();
+	private CombatController cc;
 
 	@Override
 	public void create () {
@@ -30,6 +34,10 @@ public class CreatureRPG extends ApplicationAdapter {
 		Gdx.input.setInputProcessor(stage);
 		stage.addActor(MyActor);
 		ds.set("status","created");
+		CreatureActor c3 = CreatureFactory.getCreature("BlueJay", 0, 20);
+		CreatureActor c4 = CreatureFactory.getCreature("BlueJay", 1, 30);
+		CreatureActor c5 = CreatureFactory.getCreature("BlueJay", 1, 40);
+		CreatureActor c6 = CreatureFactory.getCreature("BlueJay", 2, 50);
 	}
 
 	@Override

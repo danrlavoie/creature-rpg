@@ -1,9 +1,11 @@
-package com.creature.rpg;
+package com.creature.rpg.combat;
 
 import com.creature.rpg.creature.CreatureActor;
 import com.creature.rpg.data.DataStore;
+import com.creature.rpg.data.selectors.CreatureSelector;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class CombatController {
@@ -31,6 +33,8 @@ public class CombatController {
     }
 
     public CreatureActor[] calculateActingOrder() {
-        return null;
+        ArrayList<CreatureActor> allCreatures = CreatureSelector.getAllPartyCreatures();
+        Collections.sort(allCreatures, agiComparator);
+        return allCreatures.toArray(new CreatureActor[allCreatures.size()]);
     }
 }
