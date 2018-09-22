@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ActionMenu from './Menu/ActionMenu';
 import CreateBEMHelper from './bem-helper';
-import BattleMessageBox from './BattleMessageBox';
+import BattleMessageBox from '../containers/BattleMessageBox';
 import PartyCreatureList from '../containers/PartyCreatures/PartyCreatureList';
 
 const classes = CreateBEMHelper({

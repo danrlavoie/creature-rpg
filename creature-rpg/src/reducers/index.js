@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 import workflow from './workflow';
 import messageLog from './messageLog';
 

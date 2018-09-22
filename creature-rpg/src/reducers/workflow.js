@@ -5,8 +5,8 @@ const initialState = Immutable.fromJS({
 });
 
 const workflow = (state = initialState, action) => {
-    switch(action) {
-        
+    switch(action.type) {
+
         default: return state;
     }
 };

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './PartyCreatureList.css';
 import CreateBEMHelper from '../bem-helper';
 import PartyCreatureBox from './PartyCreatureBox';
@@ -10,8 +11,8 @@ const classes = CreateBEMHelper({
 class PartyCreatureList extends Component {
   renderCreatures() {
       return(
-        this.props.creatures.map((creature) => {
-            return <PartyCreatureBox />
+        this.props.creatures.map((creature, i) => {
+            return <PartyCreatureBox key={i} />
         })
       );
   }
@@ -25,7 +26,7 @@ class PartyCreatureList extends Component {
 }
 
 PartyCreatureList.propTypes = {
-    creatures: Array,
+    creatures: PropTypes.array,
 }
 
 export default PartyCreatureList;

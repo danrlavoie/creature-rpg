@@ -8,19 +8,30 @@ const classes = CreateBEMHelper({
 });
 
 class BattleMessageBox extends Component {
+  renderMessages() {
+      if(this.props.messages === undefined) return;
+      return(this.props.messages.map((message, i) => {
+          return <div
+          {...classes({element: 'message'})}
+          key={i}
+          >
+            {message}
+          </div>;
+      }));
+  }
   render() {
     return (
       <div
       {
         ...classes({element: 'container'})
       }>
-        Battle message box
+        {this.renderMessages()}
       </div>
     );
   }
 }
 
 BattleMessageBox.propTypes = {
-    menuText: PropTypes.string,
+    messages: PropTypes.array,
 }
 export default BattleMessageBox;

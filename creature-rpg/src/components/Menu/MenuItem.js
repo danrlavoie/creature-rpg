@@ -11,7 +11,7 @@ class MenuItem extends Component {
   render() {
     return (
       <div
-      onClick={this.props.clickAction}
+      onClick={() => { this.props.clickAction() }}
       {
         ...classes({element: 'item'})
       }>

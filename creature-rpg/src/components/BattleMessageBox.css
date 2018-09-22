@@ -1,2 +1,6 @@
 .crpg_c_battle-message-box__container {
-  background: lightblue; }
+  background: lightblue;
+  overflow: auto;
+  padding: 8px; }
+  .crpg_c_battle-message-box__container .crpg_c_battle-message-box__message {
+    border-bottom: 1px solid black; }
