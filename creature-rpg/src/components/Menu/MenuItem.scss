@@ -1,0 +1,14 @@
+.crpg_c_menu-item {
+    &__item {
+        border: 1px solid black;
+        background: white;
+        padding: 8px;
+        margin: 8px;
+        font-size: 16pt;
+        text-align: center;
+        &:hover {
+            background: lightblue;
+            cursor: pointer;
+        }
+    }
+}

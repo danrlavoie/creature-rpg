@@ -1,0 +1,12 @@
+.crpg_c_app__party-row {
+    height: 25vh;
+}
+.crpg_c_app__enemy-row {
+    height: 45vh;
+    display: flex;
+}
+.crpg_c_app__io-row {
+    height: 30vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
