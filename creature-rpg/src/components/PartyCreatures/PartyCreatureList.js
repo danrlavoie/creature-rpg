@@ -12,7 +12,13 @@ class PartyCreatureList extends Component {
   renderCreatures() {
       return(
         this.props.creatures.map((creature, i) => {
-            return <PartyCreatureBox key={i} />
+            return <PartyCreatureBox
+              key={i}
+              name={creature.name}
+              species={creature.species}
+              currentHP={creature.currentHP}
+              maxHP={creature.maxHP}
+            />
         })
       );
   }

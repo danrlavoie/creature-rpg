@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        creatures: ['a', 'b', 'c'],
+        creatures: state.getIn(['creature', 'playerParty']).toJS(),
     };
 }
 

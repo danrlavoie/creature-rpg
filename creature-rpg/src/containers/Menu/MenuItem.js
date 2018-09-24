@@ -4,8 +4,8 @@ import { actions } from '../../actions';
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        clickAction: () => {
-            dispatch(actions.logMessage(ownProps.menuText, 'WARN' ));
+        clickAction: (menuText) => {
+            dispatch(actions.logMessage(menuText, 'WARN' ));
         },
     };
 }
