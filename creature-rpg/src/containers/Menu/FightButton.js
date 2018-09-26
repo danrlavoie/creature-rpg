@@ -1,10 +1,12 @@
 import FightButton from '../../components/Menu/FightButton';
 import { connect } from 'react-redux';
 import { actions } from '../../actions';
+import { selectors } from '../../selectors';
 
 const mapStateToProps = (state, ownProps) => {
-    const participantIDs = state.getIn(['creature', 'playerParty']).concat(state.getIn(['creature', 'enemyParty'])).toJS();
-    const participants = state.getIn(['creature', 'creatures']).filter((v, k) => participantIDs.includes(k)).toJS();
+    const participantIDs = selectors.getAllPartyCreatureIDs(state);
+    const participants = selectors.getCreatures(state, participantIDs);
+    console.log(selectors.getCreatureSpeeds(state, participantIDs));
     return {
         participants,
         participantIDs,
@@ -14,15 +16,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         clickAction: (participants, participantIDs) => {
-            dispatch(actions.logMessage('Choose acting order', 'WARN' ));
-            const actingOrder = participantIDs.sort((a, b) => {
-                return (participants[`${a}`].speed < participants[`${b}`].speed);
-            });
-            actingOrder.map((actor) => {
-                dispatch(actions.logMessage(actor + ' is acting', 'WARN' ));
-                return actor;
-            });
-            console.log(actingOrder);
+            dispatch(actions.logMessage('Advance to next battle round', 'WARN' ));
+            
+            dispatch(actions.incrementBattleRound());
         },
     };
 }

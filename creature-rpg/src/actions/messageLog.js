@@ -1,5 +1,5 @@
 
-const LOG = 'LOG'
+const LOG = 'LOG';
 export const actionTypes = {
     LOG,
 };
