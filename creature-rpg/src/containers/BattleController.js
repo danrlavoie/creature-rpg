@@ -6,20 +6,36 @@ import { selectors } from '../selectors';
 const mapStateToProps = (state, ownProps) => {
     const participantIDs = selectors.getAllPartyCreatureIDs(state);
     const participants = selectors.getCreatures(state, participantIDs);
-    const currentRound = selectors.getCurrentBattleRound(state);
-    const currentPhase = selectors.getCurrentBattlePhase(state);
+    const anyLivingPlayerCreatures = selectors.getAnyLivingPlayerCreatures(state);
+    const anyLivingEnemyCreatures = selectors.getAnyLivingEnemyCreatures(state);
+    const battleRound = selectors.getCurrentBattleRound(state);
+    const battlePhase = selectors.getCurrentBattlePhase(state);
     const activeActor = selectors.getActiveBattleActor(state);
+    const speeds = selectors.getCreatureSpeeds(state, participantIDs);
+    const actingOrder = participantIDs.slice();
+    actingOrder.sort((a, b) => {
+      return speeds[a] < speeds[b];
+    });
     return {
-        participants,
-        participantIDs,
-        currentRound,
-        currentPhase,
-        activeActor,
+      battleRound,
+      battlePhase,
+      anyLivingPlayerCreatures,
+      anyLivingEnemyCreatures,
+      participants,
+      participantIDs,
+      activeActor,
+      actingOrder,
     }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
+      advanceBattlePhase: () => {
+        dispatch(actions.advanceBattlePhase());
+      },
+      endBattle: ({ playerAlive, enemyAlive }) => {
+        dispatch(actions.logMessage('Battle is over', 'WARN'));
+      },
     };
 }
 
