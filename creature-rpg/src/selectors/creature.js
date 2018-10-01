@@ -23,6 +23,10 @@ const getEnemyPartyCreatures = (state) => {
   return getCreatures(state, getPlayerPartyCreatureIDs(state));
 };
 
+const getAllPartyCreatures = (state) => {
+  return getCreatures(state, getAllPartyCreatureIDs(state));
+};
+
 const getAnyLivingPlayerCreatures = (state) => {
   return Object.values(getPlayerPartyCreatures(state)).reduce((bool, v) => {
     if (v.currentHP > 0) {
@@ -39,6 +43,21 @@ const getAnyLivingEnemyCreatures = (state) => {
     }
     return bool;
   }, false);
+};
+
+const getAllLivingCreatures = (state) => {
+  return getAllPartyCreatureIDs(state).map((creatureID) => {
+    if (state.getIn(['creature', 'creatures', creatureID, 'currentHP']) > 0) {
+      return { [creatureID]: state.getIn(['creature', 'creatures', creatureID]).toJS() };
+    }
+    return;
+  });
+};
+
+const getAllLivingCreatureIDs = (state) => {
+  return getAllLivingCreatures(state).map((creature) => {
+    return Object.keys(creature)[0];
+  });
 };
 
 const getCreature = (state, creatureID) => {
@@ -58,8 +77,11 @@ export const selectors = {
   getEnemyPartyCreatureIDs,
   getPlayerPartyCreatures,
   getEnemyPartyCreatures,
+  getAllPartyCreatures,
   getAnyLivingPlayerCreatures,
   getAnyLivingEnemyCreatures,
+  getAllLivingCreatures,
+  getAllLivingCreatureIDs,
   getCreatures,
   getCreature,
   getCreatureSpeeds,
