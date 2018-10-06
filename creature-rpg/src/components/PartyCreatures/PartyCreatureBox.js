@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './PartyCreatureBox.css';
+import './PartyCreatureBox.scss';
 import CreateBEMHelper from '../bem-helper';
 
 const classes = CreateBEMHelper({

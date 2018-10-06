@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './PartyCreatureList.css';
+import './PartyCreatureList.scss';
 import CreateBEMHelper from '../bem-helper';
 import PartyCreatureBox from './PartyCreatureBox';
 

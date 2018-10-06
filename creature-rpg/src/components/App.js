@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import ActionMenu from './Menu/ActionMenu';
 import CreateBEMHelper from './bem-helper';
 import BattleMessageBox from '../containers/BattleMessageBox';

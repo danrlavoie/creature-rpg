@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './BattleMessageBox.css';
+import './BattleMessageBox.scss';
 import CreateBEMHelper from './bem-helper';
 
 const classes = CreateBEMHelper({

@@ -1,5 +1,0 @@
-.crpg_c_party-creature-list__list {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  background: lightcyan;
-  height: 100%; }

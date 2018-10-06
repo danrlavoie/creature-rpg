@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './ActionMenu.css';
+import './ActionMenu.scss';
 import CreateBEMHelper from '../bem-helper';
 import MenuItem from '../../containers/Menu/MenuItem';
 import FightButton from '../../containers/Menu/FightButton';

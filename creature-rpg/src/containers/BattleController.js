@@ -52,7 +52,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           dispatch(actions.setActiveActor(actingOrder[i]))
           dispatch(actions.advanceBattlePhase());
         }
-      }
+      },
+      setActiveAction: (action) => {
+
+      },
     };
 }
 

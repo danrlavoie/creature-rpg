@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './MenuItem.css';
+import './MenuItem.scss';
 import CreateBEMHelper from '../bem-helper';
 
 const classes = CreateBEMHelper({
