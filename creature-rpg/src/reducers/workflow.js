@@ -19,7 +19,6 @@ const workflow = (state = initialState, action) => {
         return state.setIn(['battle', 'currentPhase'], action.payload.phase);
       }
       else {
-        console.log(action);
         switch(state.getIn(['battle', 'currentPhase'])) {
           case BATTLE_PHASES.CHECK_ALIVE:
             return state.setIn(['battle', 'currentPhase'], BATTLE_PHASES.CHOOSE_ACTION);
@@ -38,6 +37,8 @@ const workflow = (state = initialState, action) => {
       return state.setIn(['battle', 'activeActor'], action.payload.actorID);
     case actionTypes.SET_ACTING_ORDER:
       return state.setIn(['battle', 'actingOrder'], action.payload.creatureIDs);
+      case actionTypes.SET_ACTIVE_ACTION:
+        return state.setIn(['battle', 'activeAction'], action.payload.actionID);
     default: return state;
   }
 };

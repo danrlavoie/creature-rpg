@@ -58,8 +58,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
       },
       setActiveAction: ({ activeActor, availableActions }) => {
-        console.log(activeActor);
-        console.log(availableActions);
+        const chosenAction = Object.keys(availableActions).filter((action) => {
+          return availableActions[action].actionClass === activeActor.personality;
+        })[0];
+        dispatch(actions.setActiveAction(chosenAction));
       },
       setTarget: ({ activeActor, activeAction, playerParticipants, enemyParticipants }) => {
 
