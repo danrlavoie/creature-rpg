@@ -19,6 +19,7 @@ const mapStateToProps = (state, ownProps) => {
     const actingOrder = participantIDs.slice().sort((a, b) => {
       return speeds[a] < speeds[b];
     });
+    const activeAction = selectors.getActiveAction(state);
     return {
       battleRound,
       battlePhase,
@@ -31,6 +32,7 @@ const mapStateToProps = (state, ownProps) => {
       activeActorID,
       actingOrder,
       availableActions,
+      activeAction,
     }
 }
 
@@ -64,7 +66,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(actions.setActiveAction(chosenAction));
       },
       setTarget: ({ activeActor, activeAction, playerParticipants, enemyParticipants }) => {
-
+        console.log(activeAction);
       },
     };
 }

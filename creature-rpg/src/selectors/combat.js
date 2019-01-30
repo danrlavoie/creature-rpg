@@ -28,7 +28,29 @@ const getAvailableActions = (state, creatureID) => {
   };
 };
 
+const getActiveAction = (state) => {
+  const activeAction = state.getIn(['workflow', 'battle', 'activeAction']);
+  if (activeAction === 'attack' || activeAction === 'defend') {
+    return {
+      [activeAction]: {
+        actionClass: state.getIn(['combat', 'actionClasses', activeAction]),
+        targets: state.getIn(['combat', 'targets', activeAction]),
+        effects: state.getIn(['combat', 'effects', activeAction]),    
+      }
+    };
+  }
+  const action = state.getIn(['combat', 'actionClasses', 'skills', action ]);
+  return {
+    [activeAction]: {
+      actionClass: state.getIn(['combat', 'actionClasses', 'skills', activeAction]),
+      targets: state.getIn(['combat', 'targets', 'skills', activeAction]),
+      effects: state.getIn(['combat', 'effects', 'skills', activeAction]),    
+    }
+  }
+}
+
 
 export const selectors = {
   getAvailableActions,
+  getActiveAction,
 };

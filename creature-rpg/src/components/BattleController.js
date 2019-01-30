@@ -88,5 +88,6 @@ BattleController.propTypes = {
   advanceBattlePhase: PropTypes.func,
   endBattle: PropTypes.func,
   setActingOrder: PropTypes.func,
+  activeAction: PropTypes.object,
 }
 export default BattleController;
