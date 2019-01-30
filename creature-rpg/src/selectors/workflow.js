@@ -6,12 +6,12 @@ const getCurrentBattlePhase = (state) => {
   return state.getIn(['workflow', 'battle', 'currentPhase']);
 };
 
-const getActiveBattleActor = (state) => {
+const getActiveBattleActorID = (state) => {
   return state.getIn(['workflow', 'battle', 'activeActor']);
 };
 
 export const selectors = {
   getCurrentBattleRound,
   getCurrentBattlePhase,
-  getActiveBattleActor,
+  getActiveBattleActorID,
 };

@@ -61,7 +61,9 @@ const getAllLivingCreatureIDs = (state) => {
 };
 
 const getCreature = (state, creatureID) => {
-  return state.getIn(['creature', 'creatures', creatureID]).toJS();
+  return !!state.getIn(['creature', 'creatures', creatureID]) ?
+    state.getIn(['creature', 'creatures', creatureID]).toJS() :
+    {};
 };
 
 const getCreatureSpeeds = (state, creatureIDs) => {

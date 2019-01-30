@@ -6,7 +6,6 @@ import { selectors } from '../../selectors';
 const mapStateToProps = (state, ownProps) => {
     const participantIDs = selectors.getAllPartyCreatureIDs(state);
     const participants = selectors.getCreatures(state, participantIDs);
-    console.log(selectors.getCreatureSpeeds(state, participantIDs));
     return {
         participants,
         participantIDs,

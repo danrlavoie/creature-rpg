@@ -12,8 +12,6 @@ class BattleController extends Component {
     console.log(this.props);
   }
   componentDidUpdate(prevProps) {
-    console.log(prevProps);
-    console.log(this.props);
     if (this.props.anyLivingPlayerCreatures && this.props.anyLivingEnemyCreatures) {
       // If there are living creatures on both sides, continue the battle.
       if(this.props.battleRound > prevProps.battleRound) {
@@ -24,10 +22,9 @@ class BattleController extends Component {
       }
       if (this.props.battlePhase !== prevProps.battlePhase) {
         // The battle phase has changed, so execute an action relevant to the new phase
-        console.log(this.props.battlePhase);
         switch(this.props.battlePhase) {
           case BATTLE_PHASES.CHECK_ALIVE:
-            if(this.props.livingParticipantIDs.includes(this.props.activeActor)) {
+            if(this.props.livingParticipantIDs.includes(this.props.activeActorID)) {
               this.props.advanceBattlePhase();
             }
             else {
@@ -35,16 +32,26 @@ class BattleController extends Component {
             }
             break;
           case BATTLE_PHASES.CHOOSE_ACTION:
+            this.props.setActiveAction({
+              activeActor: this.props.activeActor,
+              availableActions: this.props.availableActions,
+            });
             this.props.advanceBattlePhase();
             break;
           case BATTLE_PHASES.CHOOSE_TARGET:
+            this.props.setTarget({
+              activeActor: this.props.activeActor,
+              activeAction: this.props.activeAction,
+              playerParticipants: this.props.playerParticipants,
+              enemyParticipants: this.props.enemyParticipants,
+            });
             this.props.advanceBattlePhase();
             break;
           case BATTLE_PHASES.EXECUTE_ACTION:
             this.props.advanceBattlePhase();
             break;
           case BATTLE_PHASES.CHOOSE_NEXT_ACTOR:
-            this.props.advanceActiveActor(this.props.actingOrder, this.props.activeActor);
+            this.props.advanceActiveActor(this.props.actingOrder, this.props.activeActorID);
             break;
           default:
             break;
@@ -76,7 +83,8 @@ BattleController.propTypes = {
   anyLivingPlayerCreatures: PropTypes.bool,
   anyLivingEnemyCreatures: PropTypes.bool,
   actingOrder: PropTypes.array,
-  activeActor: PropTypes.string,
+  activeActor: PropTypes.object,
+  activeActorId: PropTypes.string,
   advanceBattlePhase: PropTypes.func,
   endBattle: PropTypes.func,
   setActingOrder: PropTypes.func,

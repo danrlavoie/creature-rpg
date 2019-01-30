@@ -11,7 +11,9 @@ const mapStateToProps = (state, ownProps) => {
     const anyLivingEnemyCreatures = selectors.getAnyLivingEnemyCreatures(state);
     const battleRound = selectors.getCurrentBattleRound(state);
     const battlePhase = selectors.getCurrentBattlePhase(state);
-    const activeActor = selectors.getActiveBattleActor(state);
+    const activeActorID = selectors.getActiveBattleActorID(state);
+    const activeActor = selectors.getCreature(state, activeActorID);
+    const availableActions = selectors.getAvailableActions(state, activeActor);
     const speeds = selectors.getCreatureSpeeds(state, participantIDs);
     const livingParticipantIDs = selectors.getAllLivingCreatureIDs(state);
     const actingOrder = participantIDs.slice().sort((a, b) => {
@@ -26,7 +28,9 @@ const mapStateToProps = (state, ownProps) => {
       livingParticipantIDs,
       participantIDs,
       activeActor,
+      activeActorID,
       actingOrder,
+      availableActions,
     }
 }
 
@@ -53,7 +57,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           dispatch(actions.advanceBattlePhase());
         }
       },
-      setActiveAction: (action) => {
+      setActiveAction: ({ activeActor, availableActions }) => {
+        console.log(activeActor);
+        console.log(availableActions);
+      },
+      setTarget: ({ activeActor, activeAction, playerParticipants, enemyParticipants }) => {
 
       },
     };

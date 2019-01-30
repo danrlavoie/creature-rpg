@@ -1,4 +1,5 @@
 import Immutable from 'immutable';
+import { ACTION_CLASSES } from '../constants';
 
 const initialState = Immutable.fromJS({
     playerParty: [
@@ -17,6 +18,8 @@ const initialState = Immutable.fromJS({
             attack: 5,
             defense: 5,
             speed: 4,
+            skills: [],
+            personality: ACTION_CLASSES.OFFENSIVE,
         },
         '000002': {
             name: 'BlueJay',
@@ -26,6 +29,8 @@ const initialState = Immutable.fromJS({
             attack: 5,
             defense: 5,
             speed: 5,
+            skills: ['heal'],
+            personality: ACTION_CLASSES.HEALING,
         },
         '000003': {
             name: 'BlueJay',
@@ -35,6 +40,8 @@ const initialState = Immutable.fromJS({
             attack: 5,
             defense: 5,
             speed: 3,
+            skills: [],
+            personality: ACTION_CLASSES.OFFENSIVE,
         }
     },
 });
